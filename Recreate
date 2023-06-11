@@ -1,0 +1,141 @@
+-- Gui to Lua
+
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+
+local Frame = Instance.new("Frame")
+
+local TextButton = Instance.new("TextButton")
+
+local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+
+-- Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+
+Frame.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+
+Frame.BackgroundTransparency = 0.5
+
+Frame.Position = UDim2.new(0.858712733, 0, 0.0237762257, 0)
+
+Frame.Size = UDim2.new(0.129513338, 0, 0.227972031, 0)
+
+TextButton.Parent = Frame
+
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+
+TextButton.BackgroundTransparency = 1
+
+TextButton.Size = UDim2.new(1, 0, 1, 0)
+
+TextButton.Font = Enum.Font.SourceSans
+
+TextButton.Text = "Example"
+
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+
+TextButton.TextScaled = true
+
+TextButton.TextSize = 50
+
+TextButton.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+
+TextButton.TextStrokeTransparency = 0
+
+TextButton.TextWrapped = true
+
+TextButton.MouseButton1Down:Connect(function()
+
+    game:GetService("VirtualInputManager"):SendKeyEvent(true, "F6", false, game)
+
+end)
+
+UITextSizeConstraint.Parent = TextButton
+
+UITextSizeConstraint.MaxTextSize = 50
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Maikderninja/Maikderninja/main/Test.lua"))()
+
+local Window = Library.CreateLib("Bedwars", "BloodTheme")
+
+local Tab1 = Window:NewTab("Main")
+
+local Section1 = Tab1:NewSection("Main")
+
+Section1:NewButton("Keyboard", "Pc Like Keyboard", function()
+
+    loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Pc-keyboard-script-not-mine-10934"))()
+
+end)
+
+Section1:NewButton("vape v4", "vape v4 for bedwars", function()
+
+    loadstring(game:HttpGet("https://scriptblox.com/raw/Vape-V4-For-Roblox_316", true))()
+
+end)
+
+Section1:NewButton("Infinite Yield", "Execute Infinite Yield", function()
+
+    defaultsettings = {
+
+        prefix = ';';
+
+        StayOpen = false;
+
+        keepIY = true;
+
+        logsEnabled = false;
+
+        jLogsEnabled = false;
+
+        aliases = {};
+
+        binds = {};
+
+        WayPoints = {};
+
+        PluginsTable = {};
+
+    }
+
+    
+
+    defaults = game:GetService("HttpService"):JSONEncode(defaultsettings)
+
+    
+
+    writefile("IY_FE.iy", defaults)
+
+    
+
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+
+end)
+
+local Tab2 = Window:NewTab("Keybinds")
+
+local Section2 = Tab2:NewSection("Keybinds")
+
+Section2:NewKeybind("Toggle UI", "Toggle the UI", Enum.KeyCode.F6, function()
+
+    Library:ToggleUI()
+
+end)
+
+game:GetService("StarterGui"):SetCore("SendNotification", {
+
+    Title = "Bedwars script",
+
+    Text = "Made by zayden7828",
+
+    Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"
+
+})
