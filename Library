@@ -1,0 +1,150 @@
+
+local MyLibrary = {}
+
+function MyLibrary:CreateUI()
+    -- Instances:
+    local ScreenGui = Instance.new("ScreenGui")
+    local TopBar = Instance.new("Frame")
+    local UICorner = Instance.new("UICorner")
+    local Extension = Instance.new("Frame")
+    local Title = Instance.new("TextLabel")
+    local UIPadding = Instance.new("UIPadding")
+    local Line = Instance.new("Frame")
+    local Main = Instance.new("Frame")
+    local UICorner_2 = Instance.new("UICorner")
+    local TextButton = Instance.new("TextButton")
+    local UICorner_3 = Instance.new("UICorner")
+    local ImageLabel = Instance.new("ImageLabel")
+    local UIGridLayout = Instance.new("UIGridLayout")
+    
+    --Properties:
+    ScreenGui.Name = "MyLibrary"
+    
+    TopBar.Name = "TopBar"
+    TopBar.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+    TopBar.Position = UDim2.new(0.317850649, 0, 0.102693602, 0)
+    TopBar.Size = UDim2.new(0, 400, 0, 30)
+    
+    UICorner.CornerRadius = UDim.new(0, 6)
+    UICorner.Parent = TopBar
+    
+    Extension.Name = "Extension"
+    Extension.AnchorPoint = Vector2.new(0, 1)
+    Extension.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+    Extension.BorderSizePixel = 0
+    Extension.Position = UDim2.new(0, 0, 1, 0)
+    Extension.Size = UDim2.new(1, 0, 0.5, 0)
+    
+    Title.Name = "Title"
+    Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Title.BackgroundTransparency = 1.000
+    Title.Size = UDim2.new(0.5, 0, 1, 0)
+    Title.Font = Enum.Font.Gotham
+    Title.Text = "UI Library"
+    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title.TextSize = 14.000
+    Title.TextXAlignment = Enum.TextXAlignment.Left
+    
+    UIPadding.Parent = Title
+    UIPadding.PaddingLeft = UDim.new(0, 8)
+    UIPadding.PaddingTop = UDim.new(0, 1)
+    
+    Line.Name = "Line"
+    Line.AnchorPoint = Vector2.new(0, 1)
+    Line.BackgroundColor3 = Color3.fromRGB(81, 81, 81)
+    Line.BorderSizePixel = 0
+    Line.Position = UDim2.new(0, 0, 1, 0)
+    Line.Size = UDim2.new(1, 0, 0, 1)
+    
+    Main.Name = "Main"
+    Main.AnchorPoint = Vector2.new(0.5, 0.5)
+    Main.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    Main.Position = UDim2.new(0.5, 0, 5.30000019, 0)
+    Main.Size = UDim2.new(0, 400, 0, 261)
+    
+    UICorner_2.CornerRadius = UDim.new(0, 6)
+    UICorner_2.Parent = Main
+    
+    TextButton.Parent = Main
+    TextButton.BackgroundColor3 = Color3.fromRGB(71, 71, 70)
+    TextButton.Position = UDim2.new(-0.0149999997, 0, 0, 0)
+    TextButton.Size = UDim2.new(0, 115, 0, 50)
+    TextButton.Font = Enum.Font.SourceSans
+    TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TextButton.TextSize = 14.000
+    
+    UICorner_3.Parent = TextButton
+    
+    ImageLabel.Parent = TextButton
+    ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ImageLabel.BackgroundTransparency = 1.000
+    ImageLabel.Position = UDim2.new(0.782608688, 0, 0.479999989, 0)
+    ImageLabel.Size = UDim2.new(0, 20, 0, 20)
+    
+    UIGridLayout.Parent = Main
+    UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    UIGridLayout.CellSize = UDim2.new(0, 100, 0, 47)
+    
+    -- Create a table to store scripts
+    local scriptTable = {
+        {
+            Script = function()
+                -- Script 1
+                print("Script 1 executed")
+            end,
+            Image = "rbxassetid://12345678" -- Replace with the desired image asset ID
+        },
+        {
+            Script = function()
+                -- Script 2
+                print("Script 2 executed")
+            end,
+            Image = "rbxassetid://98765432" -- Replace with the desired image asset ID
+        },
+        -- Add more scripts and images as needed
+    }
+    
+    -- Create the main button
+    local MainButton = Instance.new("TextButton")
+    MainButton.Parent = Main
+    MainButton.BackgroundColor3 = Color3.fromRGB(71, 71, 70)
+    MainButton.Position = UDim2.new(-0.0149999997, 0, 0, 0)
+    MainButton.Size = UDim2.new(0, 115, 0, 50)
+    MainButton.Font = Enum.Font.SourceSans
+    MainButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    MainButton.TextSize = 14.000
+    
+    local MainButtonImage = Instance.new("ImageLabel")
+    MainButtonImage.Parent = MainButton
+    MainButtonImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    MainButtonImage.BackgroundTransparency = 1.000
+    MainButtonImage.Position = UDim2.new(0.782608688, 0, 0.479999989, 0)
+    MainButtonImage.Size = UDim2.new(0, 20, 0, 20)
+    
+    local function ExecuteScript(scriptIndex)
+        if scriptTable[scriptIndex] and scriptTable[scriptIndex].Script then
+            scriptTable[scriptIndex].Script()
+        end
+    end
+    
+    -- Connect the button click event to execute the script
+    MainButton.MouseButton1Click:Connect(function()
+        ExecuteScript(1) -- Replace 1 with the desired script index from the table
+    end)
+    
+    -- Update the image based on the selected script index
+    local function UpdateMainButtonImage(scriptIndex)
+        if scriptTable[scriptIndex] and scriptTable[scriptIndex].Image then
+            MainButtonImage.Image = scriptTable[scriptIndex].Image
+        end
+    end
+    
+    -- Update the image when the script index changes
+    -- Replace 1 with the desired initial script index
+    UpdateMainButtonImage(1)
+    
+    -- Return the ScreenGui so it can be displayed
+    return ScreenGui
+end
+
+return MyLibrary
